@@ -1,4 +1,16 @@
-# Project Name Band Application
+# Project Name 
+Band Application
+
+## Components
+- [Backend](backend.md)
+- [Frontend](frontend.md)
+- [Auth](auth.md)
+- [Video Handling](video-handling.md)
+- [Offers](offers.md)
+- [Notifications](notifications.md)
+- [CI/CD](ci-cd.md)
+- [Testing](testing.md)
+- [Logging & Monitoring](logging-monitoring.md)
 
 
 ## Context
@@ -78,6 +90,39 @@
 - **Student Dashboard**: summary card, profile info, star rating, video list, interest list, offer list, comment list
 - **Recruiter Dashboard**: list of students, student profiles, leave ratings/comments, send offers
 - **Admin Dashboard**: list of all users, actions (view/edit/delete), system stats, manage bands
+
+## Development Methodology
+- Approach: Test-Driven Development (TDD) + Clean Architecture
+- Iterations: 2-week sprints
+- Definition of Done:
+  - Unit tests + coverage threshold met
+  - Code reviewed via PR
+  - CI pipeline green
+  - Docs updated (if feature changes API or workflows)
+
+## Logging & Monitoring
+- Structured logging (Serilog for .NET)
+- Log levels: Debug (local), Info (staging), Warning/Error (prod)
+- Centralized log collection: CloudWatch / ELK stack (future)
+- Health checks endpoint: `/health`
+- Metrics to track:
+  - API latency (avg, P95)
+  - Upload success/failure rates
+  - DB query performance
+
+## Environments
+- Local: developer machines, seeded test data
+- Staging: integration tests, pre-prod review
+- Production: live environment
+- Database migration flow: Local → Staging → Production via CI/CD
+
+## Risks & Constraints
+- Video storage costs (S3 at scale)
+- Bandwidth spikes for streaming
+- Data privacy concerns (FERPA if students are under 18)
+- Recruiter authentication tied to verified institutions
+
+
 
 ## Security
 - Role-based access:
@@ -207,3 +252,5 @@ BandRecruitingApp/
 ├─ Dockerfile.backend
 ├─ Dockerfile.frontend
 └─ docker-compose.yml
+
+
